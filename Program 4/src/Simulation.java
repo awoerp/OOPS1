@@ -6,7 +6,7 @@
 
 /**
  *
- * @author SteveWoerpel
+ * @author Andy Woerpel
  */
 public class Simulation
 {

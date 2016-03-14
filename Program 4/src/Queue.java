@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//@author SteveWoerpel
+//@author Andy Woerpel
 public class Queue<E>
 {
    private E [] elements;
