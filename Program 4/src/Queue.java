@@ -11,5 +11,40 @@ public class Queue<E>
    public Queue(int capacity)
    {
       elements = (E[])new Object[capacity];
+      front = rear = count = 0;
+   }
+   
+   public boolean enqueue(E obj)
+   {
+      if(isFull())
+      {
+         return false;
+      }
+      rear = ++rear % elements.length;
+      elements[rear] = obj;
+      count++;
+      return true;
+   }
+   
+   public E dequeue()
+   {
+      if(isEmpty())
+      {
+         return null;
+      }
+      E temp = elements[rear];
+      rear = (rear + elements.length) % elements.length;
+      count--;
+      return temp;
+   }
+   
+   private boolean isEmpty()
+   {
+      return count == 0;
+   }
+   
+   private boolean isFull()
+   {
+      return count == elements.length;
    }
 }
