@@ -47,4 +47,9 @@ public class Queue<E>
    {
       return count == elements.length;
    }
+   
+   public int getSize()
+   {
+      return count;
+   }
 }

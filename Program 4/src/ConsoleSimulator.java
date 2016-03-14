@@ -15,11 +15,11 @@ public class ConsoleSimulator
 {
    static int initialCapacity = 10;
    Queue line = new Queue(initialCapacity);
+   Simulation simulation = new Simulation();
    Scanner stdin = new Scanner(System.in);
+   int customerNumber = 1;
    void run()
    {
-      
-      
       String command = stdin.next();
       while(!command.equals("Q"))
       {
@@ -32,7 +32,10 @@ public class ConsoleSimulator
                break;
             case "C": forwardTime();
                break;
-            default: print();
+            case "S": statistics();
+               break;
+            default: System.out.println(command + "is NOT a valid command!");
+               stdin.nextLine();
          }
          command = stdin.next();
       }
@@ -40,36 +43,49 @@ public class ConsoleSimulator
    
    void arrival()
    {
-      if(line.isFull())
-         System.out.println("Queue is full.");
-      else
+      Customer temp = new Customer(simulation.getClock());
+      if(!line.enqueue(temp))
       {
-         Customer temp = new Customer();
-         line.add(temp);
-         System.out.println();
+         System.out.println("queue full");
       }
+      else
+         System.out.println("Customer#" + customerNumber + "arrived @time" + simulation.getClock() +
+                            ". Number of customers waiting: " + line.getSize());
+      customerNumber++;
    }
    
    void departure()
    {
-      if(line.isEmpty())
-         System.out.println("Queue is empty.");
-      else
-      {
-         line.remove();
+      if(line.dequeue() != null)
          System.out.println();
-      }
-      
+      else
+         System.out.println();
    }
    
    void forwardTime()
    {
       int time = stdin.nextInt();
+      if(time > 0)
+      {
+         simulation.increaseClock(time);
+         System.out.println("Time updated by " + time + " units; current time is" + simulation.getClock());
+      }
+      else
+         System.out.println("Time NOT updated with " + time);
       
    }
    
-   void print()
+   void statistics()
    {
-      
+      int finished = simulation.getFinished();
+      int totalWait = simulation.getTotalWait();
+      int waited = simulation.getWaited();
+      int noWait = simulation.getNoWait();
+      System.out.println("The average wait time for the customers who finished waiting: "
+                          + (finished / totalWait) + ".");
+      System.out.println("The total wait time is " + totalWait + ".");
+      System.out.println("The number of customers finished: " + finished + ".");
+      System.out.println("The number of customers who did not have to wait: " + noWait + ".");
+      System.out.println();
    }
 }
