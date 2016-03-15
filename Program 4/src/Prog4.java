@@ -10,5 +10,8 @@
  */
 public class Prog4 
 {
-   ConsoleSimulator.run();
+   public static void main (String args[])
+   {
+      new ConsoleSimulator().run();
+   }
 }

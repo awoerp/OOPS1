@@ -43,8 +43,7 @@ public class ConsoleSimulator
    
    void arrival()
    {
-      Customer temp = new Customer(simulation.getClock());
-      if(!simulation.arrival(temp))
+      if(!simulation.newCustomer())
       {
          System.out.println("A customer couldn" + "'" 
                             + "t get in line @time " 
@@ -89,7 +88,7 @@ public class ConsoleSimulator
    {
       int finished = simulation.getFinished();
       int totalWait = simulation.getTotalWait();
-      int waited = simulation.getWaited();
+      //int waited = simulation.getWaited();
       int noWait = simulation.getNoWait();
       System.out.println("The average wait time for the customers who finished waiting: "
                           + (finished / totalWait) + ".");

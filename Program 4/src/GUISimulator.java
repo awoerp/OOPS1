@@ -76,6 +76,7 @@ public class GUISimulator extends javax.swing.JFrame {
       jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
       jTextField4.setText("chet");
       jTextField4.setAutoscrolls(false);
+      jTextField4.setCaretPosition(1);
       jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.NW_RESIZE_CURSOR));
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
