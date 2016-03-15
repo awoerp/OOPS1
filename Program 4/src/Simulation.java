@@ -20,8 +20,9 @@ public class Simulation
    private int waited; //number of customers waited
    private int totalwait; //total wait time for customers that had waited in the queue
 
-   public boolean newCustomer(Customer c1)
+   public boolean newCustomer()
    {
+      Customer c1 = new Customer(getClock());
       if(being_served == null)
       {
          being_served = c1;
@@ -47,7 +48,6 @@ public class Simulation
       {
          being_served = temp;
       }
-      
       int waitTime = clock - departingCustomer.getTimestamp();
       if(waitTime > 0)
       {
