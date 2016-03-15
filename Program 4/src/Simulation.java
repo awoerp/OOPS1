@@ -15,11 +15,53 @@ public class Simulation
    private int clock;
    private Customer being_served = null; //the customer being served
 
-   private int finished; //number of customer finished
+   private int finished; //number of customers finished
    private int nowait; //number of customers that didn’t have to wait
    private int waited; //number of customers waited
    private int totalwait; //total wait time for customers that had waited in the queue
 
+   public boolean newCustomer(Customer c1)
+   {
+      if(being_served == null)
+      {
+         being_served = c1;
+         return true;
+      }
+      return q.enqueue(c1);
+   }
+   
+   public Customer Departure()
+   {
+      if(being_served == null)
+      {
+         return null;
+      }
+      
+      Customer temp = q.dequeue();
+      Customer departingCustomer = being_served;
+      if(temp == null)
+      {
+         being_served = null;
+      }
+      else
+      {
+         being_served = temp;
+      }
+      
+      int waitTime = clock - departingCustomer.getTimestamp();
+      if(waitTime > 0)
+      {
+         waited++;
+      }
+      else
+      {
+         nowait++;
+      }
+      totalwait += waitTime;
+      finished++;
+      return departingCustomer;
+   }
+   
    public int getClock()
    {
       return clock;
