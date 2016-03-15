@@ -36,6 +36,7 @@ public class ConsoleSimulator
             default: System.out.println(command + "is NOT a valid command!");
                stdin.nextLine();
          }
+         //System.out.println();
          command = stdin.next();
       }
       System.out.print("Simulation Terminated");
@@ -62,12 +63,12 @@ public class ConsoleSimulator
       Customer temp = simulation.departure();
       if(temp == null)
       {
-         System.out.println("error");
+         System.out.println("Nobody is being served @time " + simulation.getClock() + ".");
       }
       else
       {
          System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString());
+         System.out.println(numCustomersToString() + "\n");
       }
    }
    
@@ -77,11 +78,11 @@ public class ConsoleSimulator
       if(time > 0)
       {
          simulation.increaseClock(time);
-         System.out.println("Time updated by " + time + " units; current time is" + simulation.getClock());
+         System.out.println("Time updated by " + time + " units; current time is " 
+                            + simulation.getClock() + ".");
       }
       else
-         System.out.println("Time NOT updated with " + time);
-      
+         System.out.println("Time NOT updated with " + time + ".");
    }
    
    void statistics()
@@ -93,8 +94,10 @@ public class ConsoleSimulator
       if(totalWait > 0)
       {
          System.out.println("The average wait time for the customers who finished waiting: "
-                            + (finished / totalWait) + ".");
+                            + ((float)totalWait / finished) + ".");
       }
+      else
+         System.out.println("The average wait time for the customers who finished waiting: 0.0.");
       System.out.println("The total wait time is " + totalWait + ".");
       System.out.println("The number of customers finished: " + finished + ".");
       System.out.println("The number of customers who did not have to wait: " + noWait + ".");
@@ -103,6 +106,6 @@ public class ConsoleSimulator
    
    String numCustomersToString()
    {
-      return ("Number of customers waiting in the line: " + line.getSize());
+      return ("Number of customers waiting in the line: " + simulation.getCount());
    }
 }

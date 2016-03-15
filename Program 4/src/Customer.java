@@ -10,15 +10,15 @@
  */
 public class Customer
 {
- private static int numCustomer = 0;
+ private static int numCustomer = 1;
  private int customerNo;
  private int timeStamp;
 
  public Customer(int time)
  {
     timeStamp = time;
-    customerNo++;
-
+    customerNo = numCustomer;
+    numCustomer++;
  }
 
  public int getTimestamp()
