@@ -31,7 +31,7 @@ public class Simulation
       return q.enqueue(c1);
    }
    
-   public Customer Departure()
+   public Customer departure()
    {
       if(being_served == null)
       {
