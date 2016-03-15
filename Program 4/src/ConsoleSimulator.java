@@ -90,8 +90,11 @@ public class ConsoleSimulator
       int totalWait = simulation.getTotalWait();
       //int waited = simulation.getWaited();
       int noWait = simulation.getNoWait();
-      System.out.println("The average wait time for the customers who finished waiting: "
-                          + (finished / totalWait) + ".");
+      if(totalWait > 0)
+      {
+         System.out.println("The average wait time for the customers who finished waiting: "
+                            + (finished / totalWait) + ".");
+      }
       System.out.println("The total wait time is " + totalWait + ".");
       System.out.println("The number of customers finished: " + finished + ".");
       System.out.println("The number of customers who did not have to wait: " + noWait + ".");
