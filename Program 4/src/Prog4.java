@@ -10,5 +10,5 @@
  */
 public class Prog4 
 {
-   
+   ConsoleSimulator.run();
 }

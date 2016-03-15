@@ -17,15 +17,17 @@ public class Customer
  public Customer(int time)
  {
     timeStamp = time;
+    customerNo++;
+    
  }
 
  public int getTimestamp()
  {
- 
+    return timeStamp;
  }
 
  public String toString()
  {
- 
+    return ("Customer#" + customerNo + "arrived @time " + timeStamp);
  }
 } 

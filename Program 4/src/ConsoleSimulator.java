@@ -17,7 +17,6 @@ public class ConsoleSimulator
    Queue line = new Queue(initialCapacity);
    Simulation simulation = new Simulation();
    Scanner stdin = new Scanner(System.in);
-   int customerNumber = 1;
    void run()
    {
       String command = stdin.next();
@@ -39,27 +38,38 @@ public class ConsoleSimulator
          }
          command = stdin.next();
       }
+      System.out.print("Simulation Terminated");
    }
    
    void arrival()
    {
       Customer temp = new Customer(simulation.getClock());
-      if(!line.enqueue(temp))
+      if(!simulation.arrival(temp))
       {
-         System.out.println("queue full");
+         System.out.println("A customer couldn" + "'" 
+                            + "t get in line @time " 
+                            + simulation.getClock()
+                            + " because the line was full.");
       }
       else
-         System.out.println("Customer#" + customerNumber + "arrived @time" + simulation.getClock() +
-                            ". Number of customers waiting: " + line.getSize());
-      customerNumber++;
+      {
+         System.out.print("A customer has arrived @time " + simulation.getClock() + ". ");
+         System.out.println(numCustomersToString());
+      }
    }
    
    void departure()
    {
-      if(line.dequeue() != null)
-         System.out.println();
+      Customer temp = simulation.departure();
+      if(temp == null)
+      {
+         System.out.println("error");
+      }
       else
-         System.out.println();
+      {
+         System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
+         System.out.println(numCustomersToString());
+      }
    }
    
    void forwardTime()
@@ -87,5 +97,10 @@ public class ConsoleSimulator
       System.out.println("The number of customers finished: " + finished + ".");
       System.out.println("The number of customers who did not have to wait: " + noWait + ".");
       System.out.println();
+   }
+   
+   String numCustomersToString()
+   {
+      return ("Number of customers waiting in the line: " + line.getSize());
    }
 }
