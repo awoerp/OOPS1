@@ -13,6 +13,7 @@ public class Customer
  private static int numCustomer = 1;
  private int customerNo;
  private int timeStamp;
+ private int timeOfService = 0;
 
  public Customer(int time)
  {
@@ -30,4 +31,15 @@ public class Customer
  {
     return ("Customer#" + customerNo + "arrived @time " + timeStamp);
  }
+ 
+ public void setTimeOfService(int time)
+ {
+    timeOfService = time;
+ }
+ 
+ public int getTimeOfService()
+ {
+    return timeOfService;
+ }
+ 
 } 

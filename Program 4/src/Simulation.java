@@ -26,6 +26,7 @@ public class Simulation
       if(being_served == null)
       {
          being_served = c1;
+         c1.setTimeOfService(getClock());
          return true;
       }
       
@@ -48,8 +49,11 @@ public class Simulation
       else
       {
          being_served = temp;
+         being_served.setTimeOfService(getClock());
+         
       }
-      int waitTime = clock - departingCustomer.getTimestamp();
+      int waitTime = departingCustomer.getTimeOfService() - 
+                     departingCustomer.getTimestamp();
       if(waitTime > 0)
       {
          waited++;
@@ -58,7 +62,6 @@ public class Simulation
       {
          nowait++;
       }
-      totalwait += waitTime;
       finished++;
       return departingCustomer;
    }
@@ -91,6 +94,7 @@ public class Simulation
    void increaseClock(int time)
    {
       clock += time;
+      totalwait += time * getCount();
    }
    
    int getCount()
