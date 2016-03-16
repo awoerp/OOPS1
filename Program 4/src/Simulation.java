@@ -28,6 +28,7 @@ public class Simulation
          being_served = c1;
          return true;
       }
+      
       return q.enqueue(c1);
    }
    
