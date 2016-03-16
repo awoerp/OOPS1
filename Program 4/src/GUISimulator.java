@@ -13,8 +13,11 @@ public class GUISimulator extends javax.swing.JFrame {
    /**
     * Creates new form GUISimulator
     */
-   public GUISimulator() {
-      initComponents();
+   
+   Simulation simulation = new Simulation();
+   public GUISimulator() 
+   { 
+      initComponents();  
    }
 
    /**
@@ -26,16 +29,16 @@ public class GUISimulator extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
-      jButton1 = new javax.swing.JButton();
-      jButton2 = new javax.swing.JButton();
-      jButton3 = new javax.swing.JButton();
-      jButton4 = new javax.swing.JButton();
+      Arrive = new javax.swing.JButton();
+      statistics = new javax.swing.JButton();
+      increaseClock = new javax.swing.JButton();
+      departure = new javax.swing.JButton();
       jLabel1 = new javax.swing.JLabel();
       jLabel2 = new javax.swing.JLabel();
-      jTextField1 = new javax.swing.JTextField();
+      clockField = new javax.swing.JTextField();
       jLabel3 = new javax.swing.JLabel();
-      jTextField2 = new javax.swing.JTextField();
-      jTextField3 = new javax.swing.JTextField();
+      beingServedField = new javax.swing.JTextField();
+      waitingField = new javax.swing.JTextField();
       jLabel4 = new javax.swing.JLabel();
       jTextField4 = new javax.swing.JTextField();
 
@@ -43,22 +46,37 @@ public class GUISimulator extends javax.swing.JFrame {
       setTitle("Program 4 GUISimulator");
       setPreferredSize(new java.awt.Dimension(400, 400));
 
-      jButton1.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
-      jButton1.setLabel("Arrive");
-      jButton1.addActionListener(new java.awt.event.ActionListener() {
+      Arrive.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      Arrive.setLabel("Arrive");
+      Arrive.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            ArriveActionPerformed(evt);
          }
       });
 
-      jButton2.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
-      jButton2.setLabel("Statistics");
+      statistics.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      statistics.setLabel("Statistics");
+      statistics.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            statisticsActionPerformed(evt);
+         }
+      });
 
-      jButton3.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
-      jButton3.setLabel("Clock +1");
+      increaseClock.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      increaseClock.setLabel("Clock +1");
+      increaseClock.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            increaseClockActionPerformed(evt);
+         }
+      });
 
-      jButton4.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
-      jButton4.setLabel("Leave");
+      departure.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      departure.setLabel("Leave");
+      departure.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            departureActionPerformed(evt);
+         }
+      });
 
       jLabel1.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 14)); // NOI18N
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -67,13 +85,18 @@ public class GUISimulator extends javax.swing.JFrame {
       jLabel2.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
       jLabel2.setText("Clock");
 
-      jTextField1.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      clockField.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      clockField.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            clockFieldActionPerformed(evt);
+         }
+      });
 
       jLabel3.setText("Customer Being Served");
 
-      jTextField2.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      beingServedField.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
 
-      jTextField3.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      waitingField.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
 
       jLabel4.setText("Number of Customers Waiting");
 
@@ -97,17 +120,17 @@ public class GUISimulator extends javax.swing.JFrame {
                      .addComponent(jLabel2)
                      .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                           .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(clockField, javax.swing.GroupLayout.Alignment.LEADING)
                            .addGroup(layout.createSequentialGroup()
-                              .addComponent(jButton1)
+                              .addComponent(Arrive)
                               .addGap(18, 18, 18)
-                              .addComponent(jButton4)
+                              .addComponent(departure)
                               .addGap(18, 18, 18)
-                              .addComponent(jButton3))
-                           .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                              .addComponent(increaseClock))
+                           .addComponent(beingServedField, javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(waitingField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(statistics))
                      .addComponent(jLabel3)
                      .addComponent(jLabel4)
                      .addGroup(layout.createSequentialGroup()
@@ -123,22 +146,22 @@ public class GUISimulator extends javax.swing.JFrame {
             .addComponent(jLabel1)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jButton1)
-               .addComponent(jButton4)
-               .addComponent(jButton3)
-               .addComponent(jButton2))
+               .addComponent(Arrive)
+               .addComponent(departure)
+               .addComponent(increaseClock)
+               .addComponent(statistics))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(clockField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(beingServedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel4)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(waitingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
             .addContainerGap())
@@ -147,10 +170,77 @@ public class GUISimulator extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jButton1ActionPerformed
+   private void ArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArriveActionPerformed
+      if(!simulation.newCustomer())
+      {
+         System.out.println("A customer couldn" + "'" 
+                            + "t get in line @time " 
+                            + simulation.getClock()
+                            + " because the line was full.");
+      }
+      else
+      {
+         System.out.print("A customer has arrived @time " + simulation.getClock() + ". ");
+         System.out.println(numCustomersToString());
+      }
+   }//GEN-LAST:event_ArriveActionPerformed
 
+   private void departureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departureActionPerformed
+      Customer temp = simulation.departure();
+      if(temp == null)
+      {
+         System.out.println("Nobody is being served @time " + simulation.getClock() + ".");
+      }
+      else
+      {
+         System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
+         System.out.println(numCustomersToString());
+      }   
+   }//GEN-LAST:event_departureActionPerformed
+
+   private void increaseClockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseClockActionPerformed
+         simulation.increaseClock(1);
+         clockField.setText("Current time is " + Integer.toString(simulation.getClock()));
+         //System.out.println("Time updated by 1 units; current time is " + simulation.getClock() + ".");
+   }//GEN-LAST:event_increaseClockActionPerformed
+
+   private void statisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsActionPerformed
+      int finished = simulation.getFinished();
+      int totalWait = simulation.getTotalWait();
+      int waited = simulation.getWaited();
+      int noWait = simulation.getNoWait();
+      if(totalWait > 0)
+      {
+         System.out.println("The average wait time for the customers who finished waiting: "
+                            + ((float)totalWait / (waited)) + ".");
+      }
+      else
+         System.out.println("The average wait time for the customers who finished waiting: 0.0.");
+      System.out.println("The total wait time is " + totalWait + ".");
+      System.out.println("The number of customers finished: " + finished + ".");
+      System.out.println("The number of customers who did not have to wait: " + noWait + ".");
+      System.out.println();      // TODO add your handling code here:
+   }//GEN-LAST:event_statisticsActionPerformed
+
+   private void clockFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockFieldActionPerformed
+      
+   }//GEN-LAST:event_clockFieldActionPerformed
+
+   private String numCustomersToString()
+   {
+      return ("Number of customers waiting in the line: " + simulation.getCount());
+   }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
    /**
     * @param args the command line arguments
     */
@@ -187,17 +277,17 @@ public class GUISimulator extends javax.swing.JFrame {
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton jButton1;
-   private javax.swing.JButton jButton2;
-   private javax.swing.JButton jButton3;
-   private javax.swing.JButton jButton4;
+   private javax.swing.JButton Arrive;
+   private javax.swing.JTextField beingServedField;
+   private javax.swing.JTextField clockField;
+   private javax.swing.JButton departure;
+   private javax.swing.JButton increaseClock;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
-   private javax.swing.JTextField jTextField1;
-   private javax.swing.JTextField jTextField2;
-   private javax.swing.JTextField jTextField3;
    private javax.swing.JTextField jTextField4;
+   private javax.swing.JButton statistics;
+   private javax.swing.JTextField waitingField;
    // End of variables declaration//GEN-END:variables
 }
