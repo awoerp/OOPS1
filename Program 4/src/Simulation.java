@@ -92,4 +92,9 @@ public class Simulation
    {
       clock += time;
    }
+   
+   int getCount()
+   {
+      return q.getSize();
+   }
 } 
