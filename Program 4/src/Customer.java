@@ -17,12 +17,8 @@ public class Customer
  public Customer(int time)
  {
     timeStamp = time;
-<<<<<<< HEAD
-    customerNo = numCustomer++;
-=======
     customerNo = numCustomer;
     numCustomer++;
->>>>>>> origin/master
  }
 
  public int getTimestamp()
