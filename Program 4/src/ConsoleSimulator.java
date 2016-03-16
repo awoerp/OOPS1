@@ -14,7 +14,6 @@ import java.util.*;
 public class ConsoleSimulator 
 {
    static int initialCapacity = 10;
-   Queue line = new Queue(initialCapacity);
    Simulation simulation = new Simulation();
    Scanner stdin = new Scanner(System.in);
    void run()
@@ -68,7 +67,7 @@ public class ConsoleSimulator
       else
       {
          System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString() + "\n");
+         System.out.println(numCustomersToString());
       }
    }
    
@@ -89,12 +88,12 @@ public class ConsoleSimulator
    {
       int finished = simulation.getFinished();
       int totalWait = simulation.getTotalWait();
-      //int waited = simulation.getWaited();
+      int waited = simulation.getWaited();
       int noWait = simulation.getNoWait();
       if(totalWait > 0)
       {
          System.out.println("The average wait time for the customers who finished waiting: "
-                            + ((float)totalWait / finished) + ".");
+                            + ((float)totalWait / (waited)) + ".");
       }
       else
          System.out.println("The average wait time for the customers who finished waiting: 0.0.");
