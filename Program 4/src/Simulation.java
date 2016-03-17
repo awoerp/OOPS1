@@ -27,6 +27,7 @@ public class Simulation
       {
          being_served = c1;
          c1.setTimeOfService(getClock());
+         nowait++;
          return true;
       }
       
@@ -54,12 +55,6 @@ public class Simulation
          waited++;
          totalwait += temp.getTimeOfService() - 
                       temp.getTimestamp();
-      }
-      int waitTime = departingCustomer.getTimeOfService() - 
-                     departingCustomer.getTimestamp();
-      if(waitTime == 0)
-      {
-         nowait++;
       }
       finished++;
       return departingCustomer;
