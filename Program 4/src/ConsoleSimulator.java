@@ -21,8 +21,6 @@ public class ConsoleSimulator
       String command = stdin.next();
       while(!command.equals("Q"))
       {
-         String originalCommand = command;
-         command = command.toUpperCase();
          switch(command)
          {
             case "A": arrival();
@@ -33,14 +31,14 @@ public class ConsoleSimulator
                break;
             case "S": statistics();
                break;
-            default: System.out.println(originalCommand + " is NOT a valid command!");
+            default: System.out.println(command + " is NOT a valid command!");
                stdin.nextLine();
          }
          //System.out.println();
          command = stdin.next();
       }
       quit();
-      System.out.print("Simulation Terminated");
+      System.out.print("Simulation terminated.");
    }
    
    void arrival()
@@ -48,7 +46,7 @@ public class ConsoleSimulator
       if(!simulation.newCustomer())
       {
          System.out.println("A customer couldn" + "'" 
-                            + "t get in line @time " 
+                            + "t get in the line @time " 
                             + simulation.getClock()
                             + " because the line was full.");
       }
@@ -69,7 +67,7 @@ public class ConsoleSimulator
       else
       {
          System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
-         System.out.println("Number of customers waiting in the line: " + simulation.getCount() + ".");
+         System.out.println("Number of customers waiting: " + simulation.getCount() + ".");
       }
    }
    
@@ -79,8 +77,14 @@ public class ConsoleSimulator
       if(time > 0)
       {
          simulation.increaseClock(time);
-         System.out.println("Time updated by " + time + " units; current time is " 
-                            + simulation.getClock() + ".");
+         if(time == 1)
+            System.out.println("Time updated by " + time + " unit; current time is " 
+                                 + simulation.getClock() + ".");
+         else
+         {
+            System.out.println("Time updated by " + time + " units; current time is " 
+                                 + simulation.getClock() + ".");
+         }
       }
       else
          System.out.println("Time NOT updated with " + time + ".");
@@ -95,12 +99,12 @@ public class ConsoleSimulator
       int noWait = simulation.getNoWait();
       if(waited == 0)
       {
-         System.out.println("The average wait time for the customers who finished waiting: 0.0");
+         System.out.println("The average wait time for the customers who finished waiting: 0.0.");
       }
       else
       {
-         System.out.println("The average wait time for the customers who finished waiting: "
-                            + ((float)totalWait / (waited)) + ".");
+         System.out.println("The average wait time for the customers who finished waiting: ");
+         System.out.printf("%.15f", ((float)totalWait / (waited)) + ".");
       }
          
       System.out.println("The total wait time is " + totalWait + ".");
