@@ -21,6 +21,7 @@ public class ConsoleSimulator
       String command = stdin.next();
       while(!command.equals("Q"))
       {
+         String originalCommand = command;
          command = command.toUpperCase();
          switch(command)
          {
@@ -32,12 +33,13 @@ public class ConsoleSimulator
                break;
             case "S": statistics();
                break;
-            default: System.out.println(command + "is NOT a valid command!");
+            default: System.out.println(originalCommand + " is NOT a valid command!");
                stdin.nextLine();
          }
          //System.out.println();
          command = stdin.next();
       }
+      quit();
       System.out.print("Simulation Terminated");
    }
    
@@ -53,7 +55,7 @@ public class ConsoleSimulator
       else
       {
          System.out.print("A customer has arrived @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString());
+         System.out.println("Number of customers waiting in the line: " + simulation.getCount());
       }
    }
    
@@ -67,7 +69,7 @@ public class ConsoleSimulator
       else
       {
          System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString());
+         System.out.println("Number of customers waiting in the line: " + simulation.getCount() + ".");
       }
    }
    
@@ -86,6 +88,7 @@ public class ConsoleSimulator
    
    void statistics()
    {
+      System.out.println();
       int finished = simulation.getFinished();
       int totalWait = simulation.getTotalWait();
       int waited = simulation.getWaited();
@@ -106,8 +109,9 @@ public class ConsoleSimulator
       System.out.println();
    }
    
-   String numCustomersToString()
+   private void quit()
    {
-      return ("Number of customers waiting in the line: " + simulation.getCount());
+      System.out.print("Simulation statistics:");
+      statistics();
    }
 }
