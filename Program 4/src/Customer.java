@@ -18,8 +18,7 @@ public class Customer
  public Customer(int time)
  {
     timeStamp = time;
-    customerNo = numCustomer;
-    numCustomer++;
+    customerNo = numCustomer++;
  }
 
  public int getTimestamp()
@@ -29,7 +28,7 @@ public class Customer
 
  public String toString()
  {
-    return ("Customer#" + customerNo + "arrived @time " + timeStamp);
+    return ("Customer#" + customerNo + " arrived @time " + timeStamp);
  }
  
  public void setTimeOfService(int time)

@@ -20,8 +20,8 @@ public class Queue<E>
       {
          return false;
       }
-      rear = ++rear % elements.length;
       elements[rear] = obj;
+      rear = (rear + 1) % elements.length;
       count++;
       return true;
    }
@@ -32,8 +32,8 @@ public class Queue<E>
       {
          return null;
       }
-      E temp = elements[rear];
-      rear = (rear + elements.length) % elements.length;
+      E temp = elements[front];
+      front = (front + 1) % elements.length;
       count--;
       return temp;
    }
