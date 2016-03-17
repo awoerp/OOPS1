@@ -40,7 +40,8 @@ public class GUISimulator extends javax.swing.JFrame {
       beingServedField = new javax.swing.JTextField();
       waitingField = new javax.swing.JTextField();
       jLabel4 = new javax.swing.JLabel();
-      jTextField4 = new javax.swing.JTextField();
+      jScrollPane1 = new javax.swing.JScrollPane();
+      statisticsArea = new javax.swing.JTextArea();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("Program 4 GUISimulator");
@@ -95,17 +96,25 @@ public class GUISimulator extends javax.swing.JFrame {
       jLabel3.setText("Customer Being Served");
 
       beingServedField.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      beingServedField.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            beingServedFieldActionPerformed(evt);
+         }
+      });
 
       waitingField.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
+      waitingField.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            waitingFieldActionPerformed(evt);
+         }
+      });
 
       jLabel4.setText("Number of Customers Waiting");
 
-      jTextField4.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N
-      jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-      jTextField4.setText("chet");
-      jTextField4.setAutoscrolls(false);
-      jTextField4.setCaretPosition(1);
-      jTextField4.setCursor(new java.awt.Cursor(java.awt.Cursor.NW_RESIZE_CURSOR));
+      statisticsArea.setEditable(false);
+      statisticsArea.setColumns(20);
+      statisticsArea.setRows(5);
+      jScrollPane1.setViewportView(statisticsArea);
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -114,7 +123,7 @@ public class GUISimulator extends javax.swing.JFrame {
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jTextField4)
+               .addComponent(jScrollPane1)
                .addGroup(layout.createSequentialGroup()
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jLabel2)
@@ -162,8 +171,8 @@ public class GUISimulator extends javax.swing.JFrame {
             .addComponent(jLabel4)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(waitingField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
             .addContainerGap())
       );
 
@@ -173,15 +182,15 @@ public class GUISimulator extends javax.swing.JFrame {
    private void ArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArriveActionPerformed
       if(!simulation.newCustomer())
       {
-         System.out.println("A customer couldn" + "'" 
+         statisticsArea.append("A customer couldn" + "'" 
                             + "t get in line @time " 
                             + simulation.getClock()
-                            + " because the line was full.");
+                            + " because the line was full.\n");
       }
       else
       {
-         System.out.print("A customer has arrived @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString());
+         statisticsArea.append("A customer has arrived @time " + simulation.getClock() + ".\n");
+         waitingField.setText(numCustomersToString() + "\n");
       }
    }//GEN-LAST:event_ArriveActionPerformed
 
@@ -189,12 +198,12 @@ public class GUISimulator extends javax.swing.JFrame {
       Customer temp = simulation.departure();
       if(temp == null)
       {
-         System.out.println("Nobody is being served @time " + simulation.getClock() + ".");
+         beingServedField.setText("Nobody is being served @time " + Integer.toString(simulation.getClock()) + ".\n");
       }
       else
       {
-         System.out.print(temp.toString() + " finished @time " + simulation.getClock() + ". ");
-         System.out.println(numCustomersToString());
+         beingServedField.setText(temp.toString() + " finished @time " + Integer.toString(simulation.getClock()) + ". ");
+         waitingField.setText(numCustomersToString() + "\n");
       }   
    }//GEN-LAST:event_departureActionPerformed
 
@@ -211,20 +220,27 @@ public class GUISimulator extends javax.swing.JFrame {
       int noWait = simulation.getNoWait();
       if(totalWait > 0)
       {
-         System.out.println("The average wait time for the customers who finished waiting: "
-                            + ((float)totalWait / (waited)) + ".");
+         statisticsArea.append("\nThe average wait time for the customers who finished waiting: " + Float.toString(((float)totalWait / (waited))) + ".\n");
       }
       else
-         System.out.println("The average wait time for the customers who finished waiting: 0.0.");
-      System.out.println("The total wait time is " + totalWait + ".");
-      System.out.println("The number of customers finished: " + finished + ".");
-      System.out.println("The number of customers who did not have to wait: " + noWait + ".");
-      System.out.println();      // TODO add your handling code here:
+         statisticsArea.append("\nThe average wait time for the customers who finished waiting: 0.0.\n");
+      statisticsArea.append("The total wait time is " + Integer.toString(totalWait) + ".\n");
+      statisticsArea.append("The number of customers finished: " + Integer.toString(finished) + ".\n");
+      statisticsArea.append("The number of customers who did not have to wait: " + Integer.toString(noWait) + ".\n");
+      statisticsArea.append("\n");      // TODO add your handling code here:
    }//GEN-LAST:event_statisticsActionPerformed
 
    private void clockFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clockFieldActionPerformed
       
    }//GEN-LAST:event_clockFieldActionPerformed
+
+   private void beingServedFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beingServedFieldActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_beingServedFieldActionPerformed
+
+   private void waitingFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waitingFieldActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_waitingFieldActionPerformed
 
    private String numCustomersToString()
    {
@@ -286,8 +302,9 @@ public class GUISimulator extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
-   private javax.swing.JTextField jTextField4;
+   private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JButton statistics;
+   private javax.swing.JTextArea statisticsArea;
    private javax.swing.JTextField waitingField;
    // End of variables declaration//GEN-END:variables
 }
