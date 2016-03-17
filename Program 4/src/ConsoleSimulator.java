@@ -103,8 +103,8 @@ public class ConsoleSimulator
       }
       else
       {
-         System.out.println("The average wait time for the customers who finished waiting: ");
-         System.out.printf("%.15f", ((float)totalWait / (waited)) + ".");
+         System.out.println("The average wait time for the customers who finished waiting: "
+                            + ((float)totalWait / (waited)) + ".");
       }
          
       System.out.println("The total wait time is " + totalWait + ".");
