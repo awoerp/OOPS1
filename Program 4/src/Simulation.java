@@ -48,11 +48,12 @@ public class Simulation
       }
       else
       {
-         totalwait += temp.getTimeOfService() - 
-                      temp.getTimestamp();
+         
          being_served = temp;
          being_served.setTimeOfService(getClock());
          waited++;
+         totalwait += temp.getTimeOfService() - 
+                      temp.getTimestamp();
       }
       int waitTime = departingCustomer.getTimeOfService() - 
                      departingCustomer.getTimestamp();

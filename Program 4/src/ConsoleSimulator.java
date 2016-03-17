@@ -92,7 +92,7 @@ public class ConsoleSimulator
       int noWait = simulation.getNoWait();
       if(waited == 0)
       {
-         System.out.println("The average wait time for the customers who finished waiting: " + totalWait + ".");
+         System.out.println("The average wait time for the customers who finished waiting: 0.0");
       }
       else
       {
