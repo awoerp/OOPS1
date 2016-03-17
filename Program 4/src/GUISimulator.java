@@ -45,6 +45,8 @@ public class GUISimulator extends javax.swing.JFrame {
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("Program 4 GUISimulator");
+      setFocusableWindowState(false);
+      setIconImages(null);
       setPreferredSize(new java.awt.Dimension(400, 400));
 
       Arrive.setFont(new java.awt.Font("Simplified Arabic Fixed", 0, 12)); // NOI18N

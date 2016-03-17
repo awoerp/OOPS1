@@ -13,10 +13,10 @@ import java.util.*;
 
 public class ConsoleSimulator 
 {
-   static int initialCapacity = 10;
-   Simulation simulation = new Simulation();
-   Scanner stdin = new Scanner(System.in);
-   void run()
+   private static int initialCapacity = 10;
+   private Simulation simulation = new Simulation();
+   private Scanner stdin = new Scanner(System.in);
+   public void run()
    {
       String command = stdin.next();
       while(!command.equals("Q"))
@@ -41,7 +41,7 @@ public class ConsoleSimulator
       System.out.print("Simulation terminated.");
    }
    
-   void arrival()
+   private void arrival()
    {
       if(!simulation.newCustomer())
       {
@@ -57,7 +57,7 @@ public class ConsoleSimulator
       }
    }
    
-   void departure()
+   private void departure()
    {
       Customer temp = simulation.departure();
       if(temp == null)
@@ -71,7 +71,7 @@ public class ConsoleSimulator
       }
    }
    
-   void forwardTime()
+   private void forwardTime()
    {
       int time = stdin.nextInt();
       if(time > 0)
@@ -90,7 +90,7 @@ public class ConsoleSimulator
          System.out.println("Time NOT updated with " + time + ".");
    }
    
-   void statistics()
+   private void statistics()
    {
       System.out.println();
       int finished = simulation.getFinished();

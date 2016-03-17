@@ -85,12 +85,12 @@ public class Simulation
       return totalwait;
    }
    
-   void increaseClock(int time)
+   public void increaseClock(int time)
    {
       clock += time;
    }
    
-   int getCount()
+   public int getCount()
    {
       return q.getSize();
    }
